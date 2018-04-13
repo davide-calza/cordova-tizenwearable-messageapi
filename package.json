@@ -1,0 +1,25 @@
+{
+  "name": "cordova-tizenwearable-messageapi",
+  "version": "1.0.0",
+  "description": "A Cordova plugin for the communication with a Tizen wearable device",
+  "cordova": {
+    "id": "cordova-tizenwearable-messageapi",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davide-calza/cordova-tizenwearable-messageapi.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "davide-calza",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/davide-calza/cordova-tizenwearable-messageapi/issues"
+  },
+  "homepage": "https://github.com/davide-calza/cordova-tizenwearable-messageapi#readme"
+}
