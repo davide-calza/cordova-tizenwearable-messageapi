@@ -13,8 +13,9 @@
     "url": "git+https://github.com/davide-calza/cordova-tizenwearable-messageapi.git"
   },
   "keywords": [
-    "AndroidWear",
-    "Android",
+    "TizenWear",
+    "TizenWearable",
+    "Tizen",
     "Wear",
     "Wearable",
     "Watch",

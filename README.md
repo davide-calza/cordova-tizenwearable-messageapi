@@ -1,13 +1,19 @@
-# cordova-androidwear-messageapi
-A Cordova plugin for the communication with an AndroidWear device. 
+# cordova-tizenwearable-messageapi
+A Cordova plugin for the communication with a Tizen Wearable device.
 It allows you to send and receive messages from the nodes to which the device is connected.
 The service works also if the application gets killed.
 
 ## Installation
 With Cordova CLI, from npm:
 ```
-$ cordova plugin add https://github.com/smartcommunitylab/cordova-androidwear-messageapi
+$ cordova plugin add https://github.com/davide-calza/cordova-tizenwearable-messageapi
 ```
+
+After building for Android with
+```
+$ cordova platform add android
+```
+copy the .xml file **/plugins/cordova-tizenwearable-messageapi/xml/accessoryservices.xml** to **/platforms/android/app/src/main/res/xml/accessoryservices.xml**
 
 ## Platform
 
@@ -16,11 +22,11 @@ $ cordova plugin add https://github.com/smartcommunitylab/cordova-androidwear-me
 ## Using
 
 ```javascript
-AndroidWearApi.getMessages(success, error)
+TizenWearApi.getMessages(success, error)
 
 ```
 ```javascript
-AndroidWearApi.sendMessage(msg, success, error)
+TizenWearApi.sendMessage(msg, success, error)
 ```
 
 ### Example
@@ -34,8 +40,8 @@ AndroidWearApi.sendMessage(msg, success, error)
         this.receivedEvent('deviceready');
 
         document.getElementById("btnsend").addEventListener("click", function () { send('hello'); }, false);
-        
-        AndroidWearApi.getMessages(function (data) {
+
+        TizenWearApi.getMessages(function (data) {
             alert(data);
         });
     },
@@ -52,7 +58,7 @@ AndroidWearApi.sendMessage(msg, success, error)
 app.initialize();
 
 function send(msg) {
-    AndroidWearApi.sendMessage(msg, function (data) {
+    TizenWearApi.sendMessage(msg, function (data) {
         Console.log(data);
     });
 }
