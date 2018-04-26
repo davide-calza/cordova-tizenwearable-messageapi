@@ -72,11 +72,11 @@ public class MessageApiWearPlugin extends CordovaPlugin {
     if(agents!=null){
       for (SAPeerAgent p : agents) {
         if (p.getPeerId().equals(lastID)) {
-          if(sendData(p, "Hello from Phone") != -1){
+          if(sendData(p, msg) != -1){
             Log.i("WearService", "sent");
             PluginResult resultOK = new PluginResult(PluginResult.Status.OK, "Sent");
             resultOK.setKeepCallback(true);
-            callbackContext.sendPluginResult(resultOK); 
+            callbackContext.sendPluginResult(resultOK);
           }
         }
       }
