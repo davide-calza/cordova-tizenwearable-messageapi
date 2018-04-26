@@ -1,16 +1,73 @@
-<?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-tizenwearable-messageapi" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-	<name>cordova-tizenwearable-messageapi</name>
-	<js-module name="cordova-tizenwearable-messageapi" src="www/cordova-tizenwearable-messageapi.js">
-		<clobbers target="cordova.plugins.cordova-tizenwearable-messageapi"/>
-	</js-module>
-	<platform name="android">
-		<config-file parent="/*" target="res/xml/config.xml">
-			<feature name="cordova-tizenwearable-messageapi">
-				<param name="android-package" value="cordova-tizenwearable-messageapi.cordova-tizenwearable-messageapi"/>
-			</feature>
-		</config-file>
-		<config-file parent="/*" target="AndroidManifest.xml"/>
-		<source-file src="src/android/cordova-tizenwearable-messageapi.java" target-dir="src/cordova-tizenwearable-messageapi/cordova-tizenwearable-messageapi"/>
-	</platform>
-</plugin> 
+<?xml version="1.0" encoding="UTF-8" ?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-tizenwearable-messageapi"
+    version="1.0.0">
+
+    <name>TizenWearable MessageApi</name>
+    <description>A Cordova plugin for the communication with a Tizen Wearable device</description>
+    <author>davide-calza</author>
+    <keywords>TizenWearable, Tizen, Wear, Wearable, Watch, MessageApi, Message, SendMessage, ReceiveMessage</keywords>
+    <license>Apache 2.0</license>
+    <repo>https://github.com/davide-calza/cordova-tizenwearable-messageapi</repo>
+    <issue>https://github.com/avide-calza/cordova-tizenwearable-messageapi/issues</issue>
+    
+    <engines>
+        <engine name="cordova-android" version=">=5.0.0" />
+    </engines>
+    
+    <platform name="android">
+        <framework src="com.google.android.gms:play-services-base:+" />
+        <framework src="com.google.android.gms:play-services-wearable:+" />
+    
+        <js-module src="www/tizenwearable-api.js" name="TizenWearApi">
+            <clobbers target="TizenWearApi" />
+        </js-module>
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="TizenWearApi">
+                <param name="android-package" value="it.davidecalza.cordova.messageapi.MessageApiWearPlugin"/>
+            </feature>
+        </config-file>
+        
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <service android:name=".MessageApiWearService" />
+
+            <receiver android:name="com.samsung.android.sdk.accessory.RegisterUponInstallReceiver">
+                <intent-filter>
+                    <action android:name="com.samsung.accessory.action.REGISTER_AGENT" />
+                </intent-filter>
+            </receiver>
+            <receiver android:name="com.samsung.android.sdk.accessory.MessageReceiver">
+                <intent-filter>
+                    <action android:name="com.samsung.accessory.action.MESSAGE_RECEIVED" />
+                </intent-filter>
+            </receiver>
+
+            <meta-data
+                android:name="AccessoryServicesLocation"
+                android:value="/res/xml/accessoryservices.xml" />
+            <meta-data
+                android:name="GearAppType"
+                android:value="wgt" />
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">            
+            <uses-permission android:name="android.permission.BLUETOOTH" />
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+            <uses-permission android:name="com.samsung.accessory.permission.ACCESSORY_FRAMEWORK" />
+            <uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
+            <uses-permission android:name="com.samsung.WATCH_APP_TYPE.Companion" />
+            <uses-permission android:name="com.samsung.wmanager.ENABLE_NOTIFICATION" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        </config-file>
+        
+        <framework src="src/android/tizenwear.gradle" custom="true" type="gradleReference" />
+        <lib-file src="libs/accessory-v2.5.0.jar" />
+        <lib-file src="libs/sdk-v1.0.0.jar" />        
+        <source-file src="src/android/MessageApiWearPlugin.java" target-dir="src/it/davidecalza/cordova/messageapi/messageapi"/>
+        <source-file src="src/android/MessageApiWearService.java" target-dir="src/it/davidecalza/cordova/messageapi/messageapi"/>
+    </platform>
+</plugin>

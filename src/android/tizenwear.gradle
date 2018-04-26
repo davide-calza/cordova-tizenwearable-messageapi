@@ -1,0 +1,12 @@
+repositories {
+    jcenter()
+    google()
+    flatDir{
+    	dirs 'libs'
+    }
+}
+
+dependencies {
+    compile files('libs/accessory-v2.5.0.jar')
+    compile files('libs/sdk-v1.0.0.jar')
+}
