@@ -37,7 +37,7 @@
             id="/sample/hellomessage"
             name="hellomessage"
             role="provider"
-            serviceImpl="it.davidecalza.cordova.messageapi.ProviderService"
+            serviceImpl="it.davidecalza.cordova.messageapi.MessageApiWearService"
             version="1.0">
             <supportedTransports>
                 <transport type="TRANSPORT_BT" />
